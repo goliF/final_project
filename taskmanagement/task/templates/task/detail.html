@@ -1,0 +1,48 @@
+{% extends "base_bootstrap.html" %}
+{% block content %}
+<span style="float: right;">
+  ({{ task.updated_at }})
+  {% if task.owner == user %}
+    <a href="{% url 'tasks:task_update' task.id %}"><i class="fa fa-pencil"></i></a>
+    <a href="{% url 'tasks:task_delete' task.id %}"><i class="fa fa-trash"></i></a>
+  {% endif %}
+</span>
+<h1>{{ task.title }}</h1>
+<p>
+  <strong> Description: </strong> {{ task.description }}
+</p>
+<p>
+  <strong> Story Point: </strong> {{ task.story_point }}
+</p>
+<p>
+  (Last Updated: {{ task.updated_at }})
+</p>
+<br>
+</br>
+{% if task.owner == user %}
+  <p>
+    <strong> Status: </strong>
+  </p>
+  <form method="post" action="{% url 'tasks:status_updated' task.id %}">
+    {% csrf_token %}
+    <select class="dropdown" name="status">
+      {% for key, choice in choices %}
+        <option value="{{ choice }}">{{ choice }}</option>
+      {% endfor %}
+    </select>
+    <br>
+    </br>
+    <p>
+      <input type="submit" value="Submit">
+      <input type="submit" value="All Tasks" onclick="window.location.href='{% url 'tasks:all' %}';return false;">
+    </p>
+  </form>
+{% endif %}
+{% if user.is_authenticated %}
+{% for status in status_list %}
+  <p> {{ status.status }}
+      ({{ status.updated_at }})
+  </p>
+{% endfor %}
+{% endif %}
+{% endblock %}

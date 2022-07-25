@@ -1,0 +1,7 @@
+{% extends "base_bootstrap.html" %}
+{% block content %}
+    <h1>Welcome to Task Management App</h1>
+    <p>
+    <input type="submit" value="All Tasks" onclick="window.location.href='{% url 'tasks:all' %}';return false;">
+    </p>
+{% endblock content %}
