@@ -32,7 +32,7 @@ class TaskListView(APIView):
             tasks = Task.objects.all().order_by('-updated_at')[:10]
         for obj in tasks:
             obj.natural_updated = naturaltime(obj.updated_at)
-        ctx = {'task_list': tasks}
+        ctx = {'task_list': tasks, 'search': strval}
         return Response(ctx)
 
 
