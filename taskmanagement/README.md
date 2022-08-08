@@ -30,7 +30,7 @@ This project is a small task management. It was built using Django and DRF and c
 1. There are 2 users defined in this project which can be used for login:
 user1:
 username: admin
-pass: admin123
+pass: Admin123
 
 user2:
 username: goli
