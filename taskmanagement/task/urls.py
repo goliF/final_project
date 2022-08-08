@@ -1,8 +1,6 @@
 from django.urls import include, path, reverse_lazy
 
-from rest_framework import routers
-
-from task import views, apiviews
+from task import views
 
 app_name = 'tasks'
 
@@ -23,9 +21,3 @@ urlpatterns = [
          views.StatusCreateView.as_view(), name='status_updated'),
 ]
 
-urlpatterns += [
-    path(app_name+'/', apiviews.ListView.as_view(), name='list'),
-    path(app_name+'/<int:pk>/', apiviews.DetailView.as_view(), name='detail'),
-    path(app_name+'/<int:pk>/status',
-         apiviews.StatusDetail.as_view(), name='status'),
-    ]

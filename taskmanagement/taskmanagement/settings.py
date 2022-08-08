@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'home.apps.HomeConfig',
     'task.apps.TaskConfig',
+    'api.apps.ApiConfig',
     'taggit',
 ]
 
